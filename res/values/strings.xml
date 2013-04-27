@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">E-yo</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_show_to_do">ShowToDo</string>
+    <string name="title_activity_show_day">ShowDay</string>
+    <string name="title_activity_start_fragment">StartFragment</string>
+
+    <string name="entrytype_prompt">Choose an Entry type</string>
+    
+    <string-array name="tasktypes">
+		<item>To Do</item>
+		<item>Date</item>
+		<item>Sintrom</item>
+		<item>Shift</item>
+	</string-array>
+    
+</resources>

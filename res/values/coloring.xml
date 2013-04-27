@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <color name="navy_cyan">#526a7c</color>
+    <color name="blue">#0000ff</color>
+    <color name="brick_red">#f00000</color>
+    <color name="dark_red">#720b0b</color>
+    <color name="cream">#fdffd0</color>
+    <color name="race_yellow">#ffc000</color>
+    <color name="dark_grey">#707070</color>
+    <color name="ice_white">#ffffff</color>
+    <color name="active">#fcfcfc</color>
+    <color name="inactive">#88afce</color>
+    <color name="tab_active">#fdffd0</color>
+    <color name="task_entry">#720b0b</color>
+    <color name="tab_inactive">#d35f8d</color>    
+</resources>

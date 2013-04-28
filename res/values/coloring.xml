@@ -9,9 +9,16 @@
     <color name="race_yellow">#ffc000</color>
     <color name="dark_grey">#707070</color>
     <color name="ice_white">#ffffff</color>
+    
     <color name="active">#fcfcfc</color>
     <color name="inactive">#88afce</color>
-    <color name="tab_active">#fdffd0</color>
+    <color name="list_bg">#fdffd0</color>
     <color name="task_entry">#720b0b</color>
-    <color name="tab_inactive">#61092c</color>    
+    <color name="add_entry_titles">#ffc000</color>
+    <color name="timetable_hour">#61092c</color>
+    <color name="tab_active">#fdffd0</color>
+    <color name="tab_active_text">#720b0b</color>
+    <color name="tab_inactive">#61092c</color>
+    <color name="tab_inactive_text">#ffc000</color>
+        
 </resources>

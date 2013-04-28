@@ -63,9 +63,19 @@ AddEntry.OnNewEntryListener,ShowList.OnArticleSelectedListener,ShowTimetable.OnT
 		FragmentManager fm = getSupportFragmentManager();
 		FragmentTransaction ft = fm.beginTransaction();
 		 
-		Fragment myFragment = new ShowList();
-		System.out.println(myFragment);
-		fillupMainFragment(myFragment,Frag_Bundle,"entrytype","To Do");
+		Fragment myFragment = new ShowTimetable();
+		Calendar c = Calendar.getInstance(); 
+		String Today = new String(Integer.toString(c.get(Calendar.YEAR)) +  
+				String.format("%02d",c.get(Calendar.MONTH) + 1) + 
+				String.format("%02d",c.get(Calendar.DAY_OF_MONTH)));
+    	fillupMainFragment(myFragment,Frag_Bundle,"date",Today);
+    	//FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+		//transaction.replace(R.id.myFragment, ShowTimetable);
+		//transaction.addToBackStack(null);
+		//transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+		//transaction.commit();
+		//System.out.println(myFragment);
+		//fillupMainFragment(myFragment,Frag_Bundle,"entrytype","To Do");
 		
 		ft.add(R.id.myFragment, myFragment);
 		ft.commit();
@@ -96,7 +106,6 @@ AddEntry.OnNewEntryListener,ShowList.OnArticleSelectedListener,ShowTimetable.OnT
     
     public void onUpperMenuSelected(String action, String text_in){
     	if (action == "ADD"){
-    		//getSupportFragmentManager().findFragmentById(R.id.myFragment);
 	    	Fragment AddEntryFragment = new AddEntry();
     		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 			transaction.replace(R.id.myFragment, AddEntryFragment);
@@ -109,20 +118,10 @@ AddEntry.OnNewEntryListener,ShowList.OnArticleSelectedListener,ShowTimetable.OnT
     }
     public void onTabSelected(String tab){
     	if (tab == "TO DO"){
-    		System.out.println("Eyo > On Tab Selected TO DO ");
     		LowerMenu TabFragment = (LowerMenu)getSupportFragmentManager().findFragmentById(R.id.LowerFragment);
 	    	TabFragment.tab_active(tab);
-	    	//FragmentManager fm = getSupportFragmentManager();
-			//FragmentTransaction ft = fm.beginTransaction();
 			 
 			Fragment ShowListFragment = new ShowList();
-			//fillupMainFragment(myFragment,Frag_Bundle,"entrytype","");
-			
-			//ft.add(R.id.myFragment, myFragment);
-			//ft.commit();	
-
-			//ShowList ShowListFragment = (ShowList)getSupportFragmentManager().findFragmentById(R.id.myFragment);
-	    	////Fragment ShowListFragment = new ShowList();
 	    	fillupMainFragment(ShowListFragment,Frag_Bundle,"entrytype","To Do");
 	    	FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 			transaction.replace(R.id.myFragment, ShowListFragment);
@@ -131,7 +130,6 @@ AddEntry.OnNewEntryListener,ShowList.OnArticleSelectedListener,ShowTimetable.OnT
 			transaction.commit();
 
     	} else if (tab == "TIMETABLE") {
-    		System.out.println("Eyo > On Tab Selected TIMETABLE ");
     		LowerMenu TabFragment = (LowerMenu)getSupportFragmentManager().findFragmentById(R.id.LowerFragment);
 	    	TabFragment.tab_active(tab);
 	   	 
@@ -156,47 +154,47 @@ AddEntry.OnNewEntryListener,ShowList.OnArticleSelectedListener,ShowTimetable.OnT
     public void onNewEntryPass(String data){
     	Data_Agent.newEntry(data);
     	
-		//getSupportFragmentManager().findFragmentById(R.id.myFragment);
-    	Fragment ShowListFragment = new ShowList();
-    	fillupMainFragment(ShowListFragment,Frag_Bundle,"entrytype","");
+    	LowerMenu TabFragment = (LowerMenu)getSupportFragmentManager().findFragmentById(R.id.LowerFragment);
+    	TabFragment.tab_active("TIMETABLE");
+   	 
+		Fragment ShowTimetable = new ShowTimetable();
+		Calendar c = Calendar.getInstance(); 
+		String Today = new String(Integer.toString(c.get(Calendar.YEAR)) +  
+				String.format("%02d",c.get(Calendar.MONTH) + 1) + 
+				String.format("%02d",c.get(Calendar.DAY_OF_MONTH)));
+    	fillupMainFragment(ShowTimetable,Frag_Bundle,"date",Today);
     	FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.myFragment, ShowListFragment);
+		transaction.replace(R.id.myFragment, ShowTimetable);
 		transaction.addToBackStack(null);
 		transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 		transaction.commit();
-		
-    	//FragmentManager fm = getSupportFragmentManager();
-		//FragmentTransaction ft = fm.beginTransaction();
-		
-		
-		//Fragment myFragment = new ShowList();
-		//fillupMainFragment(myFragment,Frag_Bundle,"entrytype","");
-		//ft.replace(R.id.myFragment, );
-		//ft.addToBackStack(null);
-		//ft.add(R.id.myFragment, myFragment);
-		//ft.commit();	
+    	
+    	//Fragment ShowListFragment = new ShowList();
+    	//fillupMainFragment(ShowListFragment,Frag_Bundle,"entrytype","");
+    	//FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+		//transaction.replace(R.id.myFragment, ShowListFragment);
+		//transaction.addToBackStack(null);
+		//transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+		//transaction.commit();
 		
     }
     
     public void onDelEntryPass(int data){
     	Data_Agent.DeleteEntry(data);
-    	Fragment ShowListFragment = new ShowList();
-    	fillupMainFragment(ShowListFragment,Frag_Bundle,"entrytype","");
+       	LowerMenu TabFragment = (LowerMenu)getSupportFragmentManager().findFragmentById(R.id.LowerFragment);
+    	TabFragment.tab_active("TIMETABLE");
+   	 
+		Fragment ShowTimetable = new ShowTimetable();
+		Calendar c = Calendar.getInstance(); 
+		String Today = new String(Integer.toString(c.get(Calendar.YEAR)) +  
+				String.format("%02d",c.get(Calendar.MONTH) + 1) + 
+				String.format("%02d",c.get(Calendar.DAY_OF_MONTH)));
+    	fillupMainFragment(ShowTimetable,Frag_Bundle,"date",Today);
     	FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.myFragment, ShowListFragment);
+		transaction.replace(R.id.myFragment, ShowTimetable);
 		transaction.addToBackStack(null);
 		transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 		transaction.commit();
-
-    	
-    	//FragmentManager fm = getSupportFragmentManager();
-		//FragmentTransaction ft = fm.beginTransaction();
-		 
-		//Fragment myFragment = new ShowList();
-		//fillupMainFragment(myFragment,Frag_Bundle,"entrytype","");
-		
-		//ft.add(R.id.myFragment, myFragment);
-		//ft.commit();	
     }
     
     public void onArticleSelected(String value){
@@ -222,6 +220,14 @@ AddEntry.OnNewEntryListener,ShowList.OnArticleSelectedListener,ShowTimetable.OnT
     			
     }
     public void onTimeTableSelected(String value){
-    
+    	System.out.println(value);
+    	Fragment EditEntryFragment = new EditEntry();
+    	FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+    	Frag_Bundle.putString("ENTRYTOEDIT", value);
+    	EditEntryFragment.setArguments(Frag_Bundle);		
+    	transaction.replace(R.id.myFragment, EditEntryFragment);
+		transaction.addToBackStack(null);
+		transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+		transaction.commit();   
     }
 }

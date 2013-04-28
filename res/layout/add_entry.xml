@@ -19,7 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Entry type:"
-                android:textColor="@color/navy_cyan" />
+                android:textColor="@color/add_entry_titles" />
 
             <Spinner
                 android:id="@+id/sp_task_type"

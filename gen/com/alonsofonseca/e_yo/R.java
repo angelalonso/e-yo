@@ -15,6 +15,7 @@ public final class R {
     }
     public static final class color {
         public static final int active=0x7f040009;
+        public static final int add_entry_titles=0x7f04000d;
         public static final int blue=0x7f040001;
         public static final int brick_red=0x7f040003;
         public static final int cream=0x7f040005;
@@ -23,11 +24,15 @@ public final class R {
         public static final int dark_red=0x7f040004;
         public static final int ice_white=0x7f040008;
         public static final int inactive=0x7f04000a;
+        public static final int list_bg=0x7f04000b;
         public static final int navy_cyan=0x7f040000;
         public static final int race_yellow=0x7f040006;
-        public static final int tab_active=0x7f04000b;
-        public static final int tab_inactive=0x7f04000d;
+        public static final int tab_active=0x7f04000f;
+        public static final int tab_active_text=0x7f040010;
+        public static final int tab_inactive=0x7f040011;
+        public static final int tab_inactive_text=0x7f040012;
         public static final int task_entry=0x7f04000c;
+        public static final int timetable_hour=0x7f04000e;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 

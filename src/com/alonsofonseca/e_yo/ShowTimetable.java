@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 public class ShowTimetable extends ListFragment{
 
-	OnTimeTableListener SelCallback;
+	OnTimeTableListener TimetableCallback;
 	
     Bundle bundled = new Bundle();
     
@@ -47,7 +47,7 @@ public class ShowTimetable extends ListFragment{
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
-        	SelCallback = (OnTimeTableListener) activity;
+        	TimetableCallback = (OnTimeTableListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnTimeTableListener");
@@ -59,10 +59,10 @@ public class ShowTimetable extends ListFragment{
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
  	   //Thanks to http://stackoverflow.com/questions/13425288/how-to-get-info-from-listfragment
- 	   String ShownText = (String) TimeTableAdapter.getItem(position);
- 	   System.out.println(ShownText);
+ 	   String value = "#id " + TimeTableAdapter.getItem(position)[0] + ", " + TimeTableAdapter.getItem(position)[1];
+ 	   System.out.println(value);
  	   //String value = "#id " + c.get("id") + ", " + c.get("time") + "," + c.get("appointment");
- 	   //SelCallback.onArticleSelected(value);
+ 	  TimetableCallback.onTimeTableSelected(value);
 
     } 	
     
@@ -92,8 +92,9 @@ public class ShowTimetable extends ListFragment{
 	 		for (int c = 0; c < aux_array.length; c++){
 		 			String[] line_tokens = aux_array[c].split(delim);
 		 			if (line_tokens[0].substring(8,10).equals(Integer.toString(hour))){
-		 				content=line_tokens[0].substring(8,10) + ":" + line_tokens[0].substring(10,12) + " - " + line_tokens[1] + line_tokens[2];
-		 				TimeTableAdapter.addItem(content);
+		 				content=line_tokens[0].substring(8,10) + ":" + line_tokens[0].substring(10,12) + " - " + line_tokens[1];
+		 				String id= line_tokens[2];
+		 				TimeTableAdapter.addItem(content, id);
 		 			}
 		 		}
     	}
@@ -108,6 +109,7 @@ public class ShowTimetable extends ListFragment{
         private static final int TYPE_MAX_COUNT = TYPE_SEPARATOR + 1;
 
         private ArrayList<String> mData = new ArrayList<String>();
+        private ArrayList<String> mId = new ArrayList<String>();
         private LayoutInflater mInflater;
 
         private TreeSet<Integer> mSeparatorsSet = new TreeSet<Integer>();
@@ -116,13 +118,16 @@ public class ShowTimetable extends ListFragment{
         	mInflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
-        public void addItem(final String item) {
+        public void addItem(final String item, final String id) {
             mData.add(item);
+            mId.add(id);
             notifyDataSetChanged();
         }
 
         public void addSeparatorItem(final String item) {
             mData.add(item);
+            String noId="-1";
+            mId.add(noId);
             // save separator position
             mSeparatorsSet.add(mData.size() - 1);
             notifyDataSetChanged();
@@ -144,8 +149,10 @@ public class ShowTimetable extends ListFragment{
         }
 
         @Override
-        public String getItem(int position) {
-            return mData.get(position);
+        public String[] getItem(int position) {
+        	String[] item = new String[] {mId.get(position),mData.get(position)};
+        	
+            return item;
         }
 
         @Override
@@ -157,7 +164,6 @@ public class ShowTimetable extends ListFragment{
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder holder = null;
             int type = getItemViewType(position);
-            System.out.println("getView " + position + " " + convertView + " type = " + type);
             if (convertView == null) {
                 holder = new ViewHolder();
                 switch (type) {

@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeSet;
 
-import com.alonsofonseca.e_yo.ShowTimetableBCKP.OnArticleSelectedListener;
 
 import android.app.Activity;
 import android.content.Context;

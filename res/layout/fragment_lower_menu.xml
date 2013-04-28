@@ -25,6 +25,6 @@
             android:paddingBottom="6dp"
             android:textSize="30dp"
             android:background="@color/tab_inactive"
-            android:textColor="@color/dark_red"
+            android:textColor="@color/race_yellow"
 		    android:text="Timetable" />
 </LinearLayout>

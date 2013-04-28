@@ -1,61 +1,43 @@
-/* 
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- * 
- * Author:
- * Ángel Alonso Fonseca <alonsofonseca.angel@gmail.com>
- * 
- */
-
 package com.alonsofonseca.e_yo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeSet;
 
-import com.alonsofonseca.e_yo.UpperMenu.OnMenuListener;
+import com.alonsofonseca.e_yo.ShowTimetableBCKP.OnArticleSelectedListener;
 
 import android.app.Activity;
-import android.database.Cursor;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 public class ShowTimetable extends ListFragment{
 
-    OnArticleSelectedListener SelCallback;
+	OnTimeTableListener SelCallback;
 	
     Bundle bundled = new Bundle();
-
-    private ListView lv;
-    //SimpleAdapter does the work to load the data in to the ListView
-    private SimpleAdapter sa;
     
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.activity_show_list, container, false);
-	}
+    private MyCustomAdapter TimeTableAdapter;
 
     @Override
-	 	public void onStart() {
-		 	super.onStart();
-		 	lv = (ListView)this.getActivity().findViewById(android.R.id.list);
-		 	dataLoad();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
+    	return inflater.inflate(R.layout.fragment_timetable, container, false);
+    }
+    
+    @Override
+    public void onStart() {
+        super.onStart();
+        TimeTableAdapter = new MyCustomAdapter();
+        dataLoad();
+        
+        setListAdapter(TimeTableAdapter);
     }
     
     @Override
@@ -65,12 +47,27 @@ public class ShowTimetable extends ListFragment{
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
-        	SelCallback = (OnArticleSelectedListener) activity;
+        	SelCallback = (OnTimeTableListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnArticleSelectedListener");
+                    + " must implement OnTimeTableListener");
         }
 
+    }
+    
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+ 	   //Thanks to http://stackoverflow.com/questions/13425288/how-to-get-info-from-listfragment
+ 	   String ShownText = (String) TimeTableAdapter.getItem(position);
+ 	   System.out.println(ShownText);
+ 	   //String value = "#id " + c.get("id") + ", " + c.get("time") + "," + c.get("appointment");
+ 	   //SelCallback.onArticleSelected(value);
+
+    } 	
+    
+    public interface OnTimeTableListener {
+             void onTimeTableSelected(String value);
     }
     
     public void dataLoad() {
@@ -78,56 +75,112 @@ public class ShowTimetable extends ListFragment{
     	
 		String[] new_arr = bundled.getStringArray("DATA");
     	    	
-    	ArrayList<Map<String, String>> list = new ArrayList<Map<String, String>>();
-        list = loadData(new_arr);
+    	ArrayList<String> list = new ArrayList<String>();
+        list = dataPrepare(new_arr);
        
-        sa = new SimpleAdapter(getActivity(), list,
-                R.layout.entries_show_list,
-        		//R.layout.showtoday,
-        		new String[] { "time","appointment"},
-                new int[] {R.layout.tv_f2_listitem_hours, R.layout.tv_f2_listitem_appnts});
-        sa.notifyDataSetChanged();
-        setListAdapter(sa);
+        setListAdapter(TimeTableAdapter);
     }
+    public ArrayList<String> dataPrepare(String[] aux_array){
+
+		ArrayList<String> auxlist = new ArrayList<String>();
+		
+    	String delim = ",";
+    	    	
+    	for (int hour = 0; hour < 24; hour++){
+    		String content=hour + ":00"; 
+    		TimeTableAdapter.addSeparatorItem(content);
+	 		for (int c = 0; c < aux_array.length; c++){
+		 			String[] line_tokens = aux_array[c].split(delim);
+		 			if (line_tokens[0].substring(8,10).equals(Integer.toString(hour))){
+		 				content=line_tokens[0].substring(8,10) + ":" + line_tokens[0].substring(10,12) + " - " + line_tokens[1] + line_tokens[2];
+		 				TimeTableAdapter.addItem(content);
+		 			}
+		 		}
+    	}
+    	return auxlist;
+}
     
-	public void onPause() {
-		super.onPause();
-	}
-	
-    public ArrayList<Map<String, String>> loadData(String[] aux_array){
 
-    		ArrayList<Map<String, String>> auxlist = new ArrayList<Map<String, String>>();
-        	String delim = ",";
-   		 	for (int c = 0; c < aux_array.length; c++){
-   		 		String[] line_tokens = aux_array[c].split(delim);
-   		 		String title=line_tokens[0].substring(6,8) + "-" + line_tokens[0].substring(4,6) + "-" + line_tokens[0].substring(0,4) + " " + line_tokens[0].substring(8,10) + ":" + line_tokens[0].substring(10,12); 
-   		 		String content=line_tokens[1];
-   		 		String entry_id=line_tokens[2];
-   		 		auxlist.add(putData(title,content,entry_id));
-   		 	}
-        	return auxlist;
-   }
-       
-   private HashMap<String, String> putData(String tasktime, String taskname, String taskid) {
-    		HashMap<String, String> item = new HashMap<String, String>();
-    		item.put("time", tasktime);
-    		item.put("appointment", taskname);
-    		item.put("id", taskid);
-    		return item;
-   }    	
+    private class MyCustomAdapter extends BaseAdapter {
 
-   @Override
-   public void onListItemClick(ListView l, View v, int position, long id) {
-	   //Thanks to http://stackoverflow.com/questions/13425288/how-to-get-info-from-listfragment
-	   HashMap<String, String> c = (HashMap<String, String>) sa.getItem(position);
-	   String value = "#id " + c.get("id") + ", " + c.get("time") + "," + c.get("appointment");
-	   SelCallback.onArticleSelected(value);
+        private static final int TYPE_ITEM = 0;
+        private static final int TYPE_SEPARATOR = 1;
+        private static final int TYPE_MAX_COUNT = TYPE_SEPARATOR + 1;
 
-   } 	
-   
-   public interface OnArticleSelectedListener {
-            void onArticleSelected(String value);
-   }
+        private ArrayList<String> mData = new ArrayList<String>();
+        private LayoutInflater mInflater;
 
-}  
+        private TreeSet<Integer> mSeparatorsSet = new TreeSet<Integer>();
 
+        public MyCustomAdapter() {
+        	mInflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        public void addItem(final String item) {
+            mData.add(item);
+            notifyDataSetChanged();
+        }
+
+        public void addSeparatorItem(final String item) {
+            mData.add(item);
+            // save separator position
+            mSeparatorsSet.add(mData.size() - 1);
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            return mSeparatorsSet.contains(position) ? TYPE_SEPARATOR : TYPE_ITEM;
+        }
+
+        @Override
+        public int getViewTypeCount() {
+            return TYPE_MAX_COUNT;
+        }
+
+        @Override
+        public int getCount() {
+            return mData.size();
+        }
+
+        @Override
+        public String getItem(int position) {
+            return mData.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder = null;
+            int type = getItemViewType(position);
+            System.out.println("getView " + position + " " + convertView + " type = " + type);
+            if (convertView == null) {
+                holder = new ViewHolder();
+                switch (type) {
+                    case TYPE_ITEM:
+                        convertView = mInflater.inflate(R.layout.item1, null);
+                        holder.textView = (TextView)convertView.findViewById(R.id.text);
+                        break;
+                    case TYPE_SEPARATOR:
+                        convertView = mInflater.inflate(R.layout.item2, null);
+                        holder.textView = (TextView)convertView.findViewById(R.id.textSeparator);
+                        break;
+                }
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder)convertView.getTag();
+            }
+            holder.textView.setText(mData.get(position));
+            return convertView;
+        }
+
+    }
+
+    public static class ViewHolder {
+        public TextView textView;
+    }
+}

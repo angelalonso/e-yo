@@ -14,19 +14,20 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
-        public static final int active=0x7f040008;
+        public static final int active=0x7f040009;
         public static final int blue=0x7f040001;
-        public static final int brick_red=0x7f040002;
-        public static final int cream=0x7f040004;
-        public static final int dark_grey=0x7f040006;
-        public static final int dark_red=0x7f040003;
-        public static final int ice_white=0x7f040007;
-        public static final int inactive=0x7f040009;
+        public static final int brick_red=0x7f040003;
+        public static final int cream=0x7f040005;
+        public static final int dark_aubergine=0x7f040002;
+        public static final int dark_grey=0x7f040007;
+        public static final int dark_red=0x7f040004;
+        public static final int ice_white=0x7f040008;
+        public static final int inactive=0x7f04000a;
         public static final int navy_cyan=0x7f040000;
-        public static final int race_yellow=0x7f040005;
-        public static final int tab_active=0x7f04000a;
-        public static final int tab_inactive=0x7f04000c;
-        public static final int task_entry=0x7f04000b;
+        public static final int race_yellow=0x7f040006;
+        public static final int tab_active=0x7f04000b;
+        public static final int tab_inactive=0x7f04000d;
+        public static final int task_entry=0x7f04000c;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -44,7 +45,7 @@ public final class R {
     public static final class id {
         public static final int LowerFragment=0x7f0a0009;
         public static final int UpperFragment=0x7f0a0007;
-        public static final int action_settings=0x7f0a0013;
+        public static final int action_settings=0x7f0a0015;
         public static final int bt_add=0x7f0a000f;
         public static final int bt_update=0x7f0a0010;
         public static final int btn_cancel=0x7f0a000c;
@@ -58,6 +59,8 @@ public final class R {
         public static final int myFragment=0x7f0a0008;
         public static final int scrollView1=0x7f0a0000;
         public static final int sp_task_type=0x7f0a0002;
+        public static final int text=0x7f0a0013;
+        public static final int textSeparator=0x7f0a0014;
         public static final int tp1=0x7f0a0004;
         public static final int tv1=0x7f0a0001;
         public static final int tv_ask=0x7f0a000a;
@@ -70,9 +73,12 @@ public final class R {
         public static final int edit_entry=0x7f030003;
         public static final int entries_show_list=0x7f030004;
         public static final int fragment_lower_menu=0x7f030005;
-        public static final int fragment_upper_menu=0x7f030006;
-        public static final int tv_f2_listitem_appnts=0x7f030008;
-        public static final int tv_f2_listitem_hours=0x7f030007;
+        public static final int fragment_timetable=0x7f030006;
+        public static final int fragment_upper_menu=0x7f030007;
+        public static final int item1=0x7f030008;
+        public static final int item2=0x7f030009;
+        public static final int tv_f2_listitem_appnts=0x7f03000b;
+        public static final int tv_f2_listitem_hours=0x7f03000a;
     }
     public static final class menu {
         public static final int eyo=0x7f090000;

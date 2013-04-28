@@ -31,7 +31,7 @@ import android.view.Menu;
 
 
 public class Eyo extends FragmentActivity implements UpperMenu.OnMenuListener,LowerMenu.OnTabListener,
-AddEntry.OnNewEntryListener,ShowList.OnArticleSelectedListener,ShowTimetable.OnArticleSelectedListener,EditEntry.OnDelEntryListener{
+AddEntry.OnNewEntryListener,ShowList.OnArticleSelectedListener,ShowTimetable.OnTimeTableListener,EditEntry.OnDelEntryListener{
 	//Data Agent:
 	String archive_name = new String("documents/Dropbox_offline/Cal.csv.aux");
 	Agent Data_Agent = new Agent();
@@ -220,5 +220,8 @@ AddEntry.OnNewEntryListener,ShowList.OnArticleSelectedListener,ShowTimetable.OnA
 		//transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 		//transaction.commit();
     			
+    }
+    public void onTimeTableSelected(String value){
+    
     }
 }

@@ -62,12 +62,18 @@ public class LowerMenu extends Fragment implements OnClickListener{
 		 if (tabselected == "TO DO"){
 			 	btn_to_do.setBackgroundColor(getResources().getColor(R.color.tab_active));
 	   		 	btn_timetable.setBackgroundColor(getResources().getColor(R.color.tab_inactive));
-			} else if (tabselected == "TIMETABLE"){
+	   		 	btn_to_do.setTextColor(getResources().getColor(R.color.dark_red));
+	   		 	btn_timetable.setTextColor(getResources().getColor(R.color.race_yellow));
+		 	} else if (tabselected == "TIMETABLE"){
 	        	btn_to_do.setBackgroundColor(getResources().getColor(R.color.tab_inactive));
 	   		 	btn_timetable.setBackgroundColor(getResources().getColor(R.color.tab_active));
+	   		 	btn_to_do.setTextColor(getResources().getColor(R.color.race_yellow));
+	   		 	btn_timetable.setTextColor(getResources().getColor(R.color.dark_red));
 			} else {
 	        	btn_to_do.setBackgroundColor(getResources().getColor(R.color.tab_inactive));
 	   		 	btn_timetable.setBackgroundColor(getResources().getColor(R.color.tab_inactive));
+	   		 	btn_to_do.setTextColor(getResources().getColor(R.color.race_yellow));
+	   		 	btn_timetable.setTextColor(getResources().getColor(R.color.race_yellow));
 			}
 	 }
 	 

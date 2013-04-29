@@ -57,12 +57,14 @@ public class ShowTimetable extends ListFragment{
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
- 	   //Thanks to http://stackoverflow.com/questions/13425288/how-to-get-info-from-listfragment
- 	   String value = "#id " + TimeTableAdapter.getItem(position)[0] + ", " + TimeTableAdapter.getItem(position)[1];
- 	   System.out.println(value);
- 	   //String value = "#id " + c.get("id") + ", " + c.get("time") + "," + c.get("appointment");
- 	  TimetableCallback.onTimeTableSelected(value);
-
+    	
+    	if (Integer.parseInt(TimeTableAdapter.getItem(position)[0]) >= 0){
+    		//Thanks to http://stackoverflow.com/questions/13425288/how-to-get-info-from-listfragment
+    		String value = "#id " + TimeTableAdapter.getItem(position)[0] + ", " + TimeTableAdapter.getItem(position)[1];
+ 	   		System.out.println(value);
+ 	   		//String value = "#id " + c.get("id") + ", " + c.get("time") + "," + c.get("appointment");
+ 	   		TimetableCallback.onTimeTableSelected(value);
+    	}
     } 	
     
     public interface OnTimeTableListener {

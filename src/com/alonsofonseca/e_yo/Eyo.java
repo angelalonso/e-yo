@@ -69,13 +69,6 @@ AddEntry.OnNewEntryListener,ShowList.OnArticleSelectedListener,ShowTimetable.OnT
 				String.format("%02d",c.get(Calendar.MONTH) + 1) + 
 				String.format("%02d",c.get(Calendar.DAY_OF_MONTH)));
     	fillupMainFragment(myFragment,Frag_Bundle,"date",Today);
-    	//FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		//transaction.replace(R.id.myFragment, ShowTimetable);
-		//transaction.addToBackStack(null);
-		//transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-		//transaction.commit();
-		//System.out.println(myFragment);
-		//fillupMainFragment(myFragment,Frag_Bundle,"entrytype","To Do");
 		
 		ft.add(R.id.myFragment, myFragment);
 		ft.commit();
@@ -147,8 +140,6 @@ AddEntry.OnNewEntryListener,ShowList.OnArticleSelectedListener,ShowTimetable.OnT
 	    } else {
 			System.out.println("Eyo > On Tab Selected NOTHING ");
 		}
-		
-    
     }
 
     public void onNewEntryPass(String data){
@@ -168,20 +159,13 @@ AddEntry.OnNewEntryListener,ShowList.OnArticleSelectedListener,ShowTimetable.OnT
 		transaction.addToBackStack(null);
 		transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 		transaction.commit();
-    	
-    	//Fragment ShowListFragment = new ShowList();
-    	//fillupMainFragment(ShowListFragment,Frag_Bundle,"entrytype","");
-    	//FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		//transaction.replace(R.id.myFragment, ShowListFragment);
-		//transaction.addToBackStack(null);
-		//transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-		//transaction.commit();
-		
     }
     
     public void onDelEntryPass(int data){
-    	Data_Agent.DeleteEntry(data);
-       	LowerMenu TabFragment = (LowerMenu)getSupportFragmentManager().findFragmentById(R.id.LowerFragment);
+    	if (data >= 0){
+    		Data_Agent.DeleteEntry(data);
+    	}
+    	LowerMenu TabFragment = (LowerMenu)getSupportFragmentManager().findFragmentById(R.id.LowerFragment);
     	TabFragment.tab_active("TIMETABLE");
    	 
 		Fragment ShowTimetable = new ShowTimetable();
@@ -198,7 +182,6 @@ AddEntry.OnNewEntryListener,ShowList.OnArticleSelectedListener,ShowTimetable.OnT
     }
     
     public void onArticleSelected(String value){
-    	System.out.println(value);
     	Fragment EditEntryFragment = new EditEntry();
     	FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
     	Frag_Bundle.putString("ENTRYTOEDIT", value);
@@ -207,18 +190,8 @@ AddEntry.OnNewEntryListener,ShowList.OnArticleSelectedListener,ShowTimetable.OnT
 		transaction.addToBackStack(null);
 		transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 		transaction.commit();
-
-    	//Fragment newFragment = new EditEntry();
-		//FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		//Frag_Bundle.putString("ENTRYTOEDIT", value);
-		//newFragment.setArguments(Frag_Bundle);
-		
-		//transaction.replace(R.id.myFragment, newFragment);
-		//transaction.addToBackStack(null);
-		//transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-		//transaction.commit();
-    			
     }
+
     public void onTimeTableSelected(String value){
     	System.out.println(value);
     	Fragment EditEntryFragment = new EditEntry();

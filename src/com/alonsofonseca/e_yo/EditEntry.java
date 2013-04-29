@@ -94,10 +94,12 @@ public class EditEntry extends Fragment implements OnClickListener{
 	        	String delim=",";
 	        	String[] line_tokens = entry_to_edit.split(delim);
 	        	int id=Integer.parseInt(line_tokens[0].replaceAll("#id ", ""));
-	        		delCallback.onDelEntryPass(id);
+	        	delCallback.onDelEntryPass(id);
 	        	break;
 	        case R.id.btn_cancel:
 	        	System.out.println("operation canceled");
+	        	delCallback.onDelEntryPass(-1);
+	        	break;
 		 	}
 	    }			//DelEntryPasser.onDelEntryPass(data);
 

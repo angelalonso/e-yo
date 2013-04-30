@@ -8,11 +8,10 @@
 		    android:id="@+id/btn_to_do"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
-            android:paddingBottom="6dp"
-            android:textSize="30dp"
-            android:background="@color/tab_inactive"
+            android:textSize="30sp"
+            android:background="@drawable/tab_bg_inactive"
             android:textColor="@color/tab_inactive_text"
 		    android:text="To Do" />
 
@@ -20,11 +19,10 @@
 		    android:id="@+id/btn_timetable"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
-            android:paddingBottom="6dp"
-            android:textSize="30dp"
-            android:background="@color/tab_active"
+            android:textSize="30sp"
+            android:background="@drawable/tab_bg_active"
             android:textColor="@color/tab_active_text"
 		    android:text="Timetable" />
 </LinearLayout>

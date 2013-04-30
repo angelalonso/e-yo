@@ -20,5 +20,6 @@
     <color name="tab_active_text">#720b0b</color>
     <color name="tab_inactive">#61092c</color>
     <color name="tab_inactive_text">#ffc000</color>
+    <color name="upper_menu_bg">#61092c</color>
         
 </resources>

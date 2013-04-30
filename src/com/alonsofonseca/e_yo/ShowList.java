@@ -101,7 +101,7 @@ public class ShowList extends ListFragment{
    		 	for (int c = 0; c < aux_array.length; c++){
    		 		String[] line_tokens = aux_array[c].split(delim);
    		 		String title=line_tokens[0].substring(6,8) + "-" + line_tokens[0].substring(4,6) + "-" + line_tokens[0].substring(0,4) + " " + line_tokens[0].substring(8,10) + ":" + line_tokens[0].substring(10,12); 
-   		 		String content=line_tokens[1];
+   		 		String content = line_tokens[1].replace("##"," - ").replaceAll("^\"|\"$", "");
    		 		String entry_id=line_tokens[2];
    		 		auxlist.add(putData(title,content,entry_id));
    		 	}

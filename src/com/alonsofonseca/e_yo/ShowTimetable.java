@@ -1,13 +1,11 @@
 package com.alonsofonseca.e_yo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.TreeSet;
-
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -19,6 +17,11 @@ import android.widget.TextView;
 
 public class ShowTimetable extends ListFragment{
 
+	// http://openfontlibrary.org - VERY BAD PERFORMANCE:
+
+	//	String OldStandardPath = "fonts/OldStandard-Italic.ttf";
+	//	String PfennigPath = "fonts/Pfennig.ttf";
+	
 	OnTimeTableListener TimetableCallback;
 	
     Bundle bundled = new Bundle();
@@ -88,12 +91,12 @@ public class ShowTimetable extends ListFragment{
     	String delim = ",";
     	    	
     	for (int hour = 0; hour < 24; hour++){
-    		String content=hour + ":00"; 
+    		String content="~  " + hour + ":00" + "  ~" ; 
     		TimeTableAdapter.addSeparatorItem(content);
 	 		for (int c = 0; c < aux_array.length; c++){
 		 			String[] line_tokens = aux_array[c].split(delim);
 		 			if (line_tokens[0].substring(8,10).equals(Integer.toString(hour))){
-		 				content=line_tokens[0].substring(8,10) + ":" + line_tokens[0].substring(10,12) + " - " + line_tokens[1];
+		 				content=line_tokens[0].substring(8,10) + ":" + line_tokens[0].substring(10,12) + " - " + line_tokens[1].replace("##"," - ").replaceAll("^\"|\"$", "");
 		 				String id= line_tokens[2];
 		 				TimeTableAdapter.addItem(content, id);
 		 			}
@@ -163,6 +166,8 @@ public class ShowTimetable extends ListFragment{
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+//            Typeface OldStandard = Typeface.createFromAsset(getActivity().getAssets(), OldStandardPath);
+//            Typeface Pfennig = Typeface.createFromAsset(getActivity().getAssets(), PfennigPath);
             ViewHolder holder = null;
             int type = getItemViewType(position);
             if (convertView == null) {
@@ -171,10 +176,12 @@ public class ShowTimetable extends ListFragment{
                     case TYPE_ITEM:
                         convertView = mInflater.inflate(R.layout.item1, null);
                         holder.textView = (TextView)convertView.findViewById(R.id.text);
+//                        holder.textView.setTypeface(Pfennig);
                         break;
                     case TYPE_SEPARATOR:
                         convertView = mInflater.inflate(R.layout.item2, null);
                         holder.textView = (TextView)convertView.findViewById(R.id.textSeparator);
+//                        holder.textView.setTypeface(OldStandard);
                         break;
                 }
                 convertView.setTag(holder);

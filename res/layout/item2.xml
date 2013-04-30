@@ -7,11 +7,12 @@
 		android:id="@+id/textSeparator"
 		android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-    	android:textSize="10dip" 
-    	android:padding="4dp"  
 		android:text="text"
-		android:visibility="visible"
+    	android:textSize="12dp" 
+    	android:textStyle="italic"
     	android:textColor="@color/timetable_hour"
+    	android:padding="4dp"  
+    	android:visibility="visible"
 		android:gravity="center" />
 	
 

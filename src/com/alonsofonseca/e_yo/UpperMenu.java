@@ -33,8 +33,7 @@ import android.widget.EditText;
 
 public class UpperMenu extends Fragment implements OnClickListener{
 
-	Button bt_add, bt_update;
-	EditText et_1, et_2;
+	Button bt_add, bt_config;
 	
 	OnMenuListener upperMenuCallback;
 	
@@ -51,8 +50,8 @@ public class UpperMenu extends Fragment implements OnClickListener{
 	        Button bt_add = (Button) v.findViewById(R.id.bt_add);
 	        bt_add.setOnClickListener(this);
 
-	        Button bt_update = (Button) v.findViewById(R.id.bt_update);
-	        bt_update.setOnClickListener(this);
+	        Button bt_config = (Button) v.findViewById(R.id.bt_config);
+	        bt_config.setOnClickListener(this);
 		 	
 	        return v;
 	 }
@@ -76,13 +75,9 @@ public class UpperMenu extends Fragment implements OnClickListener{
 	
 	 @Override
 	 public void onClick(View v) {
-		 et_1 = (EditText)this.getActivity().findViewById(R.id.et_1);
-	 	 et_2 = (EditText)this.getActivity().findViewById(R.id.et_2);
 		 switch (v.getId()) {
-	        case R.id.bt_update:
-	        		String pasa1=et_1.getText().toString();
-	        		String pasa2=et_2.getText().toString();
-	        		upperMenuCallback.onUpperMenuSelected("TEST",pasa1 + " " + pasa2);
+	        case R.id.bt_config:
+	        		upperMenuCallback.onUpperMenuSelected("TEST","blabla");
 	        	break;
 	        case R.id.bt_add:
 	        	upperMenuCallback.onUpperMenuSelected("ADD","blabla");

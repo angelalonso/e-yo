@@ -33,6 +33,7 @@ public final class R {
         public static final int tab_inactive_text=0x7f040012;
         public static final int task_entry=0x7f04000c;
         public static final int timetable_hour=0x7f04000e;
+        public static final int upper_menu_bg=0x7f040013;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -46,26 +47,29 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
+        public static final int icon_cfg=0x7f020001;
+        public static final int icon_new=0x7f020002;
+        public static final int tab_bg_active=0x7f020003;
+        public static final int tab_bg_inactive=0x7f020004;
     }
     public static final class id {
         public static final int LowerFragment=0x7f0a0009;
+        public static final int RelativeLayout01=0x7f0a000f;
         public static final int UpperFragment=0x7f0a0007;
-        public static final int action_settings=0x7f0a0015;
-        public static final int bt_add=0x7f0a000f;
-        public static final int bt_update=0x7f0a0010;
+        public static final int action_settings=0x7f0a0014;
+        public static final int bt_add=0x7f0a0011;
+        public static final int bt_config=0x7f0a0010;
         public static final int btn_cancel=0x7f0a000c;
         public static final int btn_delete=0x7f0a0006;
         public static final int btn_timetable=0x7f0a000e;
         public static final int btn_to_do=0x7f0a000d;
         public static final int dp1=0x7f0a0003;
-        public static final int et_1=0x7f0a0011;
-        public static final int et_2=0x7f0a0012;
         public static final int et_entry_description=0x7f0a0005;
         public static final int myFragment=0x7f0a0008;
         public static final int scrollView1=0x7f0a0000;
         public static final int sp_task_type=0x7f0a0002;
-        public static final int text=0x7f0a0013;
-        public static final int textSeparator=0x7f0a0014;
+        public static final int text=0x7f0a0012;
+        public static final int textSeparator=0x7f0a0013;
         public static final int tp1=0x7f0a0004;
         public static final int tv1=0x7f0a0001;
         public static final int tv_ask=0x7f0a000a;

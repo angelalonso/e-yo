@@ -1,47 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="horizontal" 
+    android:background="@color/upper_menu_bg"
+    >
 
-    <Button
+	<RelativeLayout
+    android:id="@+id/RelativeLayout01" 
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent">
+    
+    	<Button
+        android:id="@+id/bt_config"
+        android:layout_alignParentLeft="true"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/icon_cfg"
+        android:layout_margin="2dp"
+        android:text="" />
+
+        <Button
         android:id="@+id/bt_add"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@color/cream"
-        android:textColor="@color/task_entry"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        android:text="+" />
-
-    <Button
-        android:id="@+id/bt_update"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:background="@color/task_entry"
-        android:textColor="@color/cream"
-        android:textSize="16dp"
-        android:text="update" />
-
-    <EditText
-        android:id="@+id/et_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/et_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10" />
+        android:layout_alignParentRight="true" 
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/icon_new"
+        android:layout_margin="2dp"
+        android:text="" />
+    	
+	</RelativeLayout>
 
 </LinearLayout>

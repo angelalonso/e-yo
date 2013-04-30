@@ -60,18 +60,18 @@ public class LowerMenu extends Fragment implements OnClickListener{
 		 Button btn_to_do = (Button) v.findViewById(R.id.btn_to_do);
 		 Button btn_timetable = (Button) v.findViewById(R.id.btn_timetable);
 		 if (tabselected == "TO DO"){
-			 	btn_to_do.setBackgroundColor(getResources().getColor(R.color.tab_active));
-	   		 	btn_timetable.setBackgroundColor(getResources().getColor(R.color.tab_inactive));
+			 	btn_to_do.setBackgroundResource(R.drawable.tab_bg_active);
+	   		 	btn_timetable.setBackgroundResource(R.drawable.tab_bg_inactive);
 	   		 	btn_to_do.setTextColor(getResources().getColor(R.color.tab_active_text));
 	   		 	btn_timetable.setTextColor(getResources().getColor(R.color.tab_inactive_text));
 		 	} else if (tabselected == "TIMETABLE"){
-	        	btn_to_do.setBackgroundColor(getResources().getColor(R.color.tab_inactive));
-	   		 	btn_timetable.setBackgroundColor(getResources().getColor(R.color.tab_active));
+	        	btn_to_do.setBackgroundResource(R.drawable.tab_bg_inactive);
+	   		 	btn_timetable.setBackgroundResource(R.drawable.tab_bg_active);
 	   		 	btn_to_do.setTextColor(getResources().getColor(R.color.tab_inactive_text));
 	   		 	btn_timetable.setTextColor(getResources().getColor(R.color.tab_active_text));
 			} else {
-	        	btn_to_do.setBackgroundColor(getResources().getColor(R.color.tab_inactive));
-	   		 	btn_timetable.setBackgroundColor(getResources().getColor(R.color.tab_inactive));
+	        	btn_to_do.setBackgroundResource(R.drawable.tab_bg_inactive);
+	   		 	btn_timetable.setBackgroundResource(R.drawable.tab_bg_inactive);
 	   		 	btn_to_do.setTextColor(getResources().getColor(R.color.tab_inactive_text));
 	   		 	btn_timetable.setTextColor(getResources().getColor(R.color.tab_inactive_text));
 			}
